@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css" integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+    <title>Food Dude</title>
+  </head>
+  <body>
+    <!-- Modal login -->
+      <div class="modal fade" id="login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+              <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form class="form">
+                <div>
+                  <input class="form-control mt-2" type="tel" name="u_mob" placeholder="Mobile Number" required>
+                </div>
+                <div>
+                  <input class="form-control mt-2" type="password" placeholder="Password" required>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success" data-dismiss="modal">Login</button>
+              <button type="button" class="btn btn-secondary">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+  <!--Model login end-->
+  <!--Model signup-->
+      <div class="modal fade" id="signup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Sign-up</h5>
+              <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form class="form mt-5">
+                <div>
+                  <input class="form-control mt-2" type="text" name="u_name" placeholder="Enter your name" required>
+                </div>
+                <div>
+                  <input class="form-control mt-2" type="email" name="u_email" placeholder="E-mail Address" required>
+                </div>
+                <div>
+                  <input class="form-control mt-2" type="tel" name="u_mob" placeholder="Mobile Number" required>
+                </div>
+                <div>
+                  <input class="form-control mt-2" type="password" name="u_pass" placeholder="Password" required>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success" data-dismiss="modal">Sign-up</button>
+              <button type="button" class="btn btn-secondary">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+  <!--Model signup end-->
+  <!--header-->
+  {% load static %}
+    <div class="container">
+      <div class="row">
+        <div class="col col-lg-3 col-md-3 mt-1">
+          <a href="#"><img class="image rounded-circle thumbnail" src='{% static "Thefooddude/logo.jpeg" %}'></a>
+        </div>
+        <div class="col col-md-7 col-lg-7"></div>
+        <div class="col col-lg-1 col-md-1 mt-4">
+          <button type="button" class="btn" data-toggle="modal" data-target="#login">Login</button> 
+        </div>
+        <div class="col col-lg-1 col-md-1 mt-4">
+          <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#signup">Sign-up</button>
+        </div>
+      </div>
+    </div>
+  <!--header end-->
+  <!--search bar-->
+  <div class="search">
+    <div class="container">
+      <div class="row">
+        <div class="col col-lg-6 col-md-6">
+          <h4 class="mt-5 mr-2 text-light">Wanna enjoy your meal!</h4>
+          <p class="text-light mr-2">Order food online with Food Dude from nearest restaurant</p>
+          <div class="container">
+           <form class="d-flex">
+            <input class="form-control mr-2" type="search" placeholder="Enter your delivery address" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Find&nbspFood</button>
+           </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--search bar end-->
+  <!--Cards-->
+  <div class="container">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+  <div class="col">
+    <div class="card h-100">
+      <img src="https://cdn.pixabay.com/photo/2019/03/13/13/25/grocery-4052896_1280.jpg" class="card-img-top" alt="No Minimum cost">
+      <div class="card-body bg-secondary">
+        <h5 class="card-title">No Minimum Order</h5>
+        <p class="card-text">Order without restriction for yourself, friends or family</p>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card h-100">
+      <img src="https://cdn.pixabay.com/photo/2018/07/27/19/40/tracking-3566710_1280.jpg" class="card-img-top" alt="LIve Order Tracking">
+      <div class="card-body bg-secondary">
+        <h5 class="card-title">Live Order Tracking</h5>
+        <p class="card-text">Know how far your order from your doorstep</p>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card h-100">
+      <img src="https://cdn.pixabay.com/photo/2019/10/10/07/16/pizza-4538925_1280.jpg" class="card-img-top" alt="Fast Delivery">
+      <div class="card-body bg-secondary">
+        <h5 class="card-title">Fast Delivery</h5>
+        <p class="card-text">Get your food on time with our fast delivery experience</p>
+      </div>
+    </div>
+  </div>
+</div>
+  </div>
+  <!--Cards end-->
+  <!--Footer-->
+<footer class="page-footer font-small cyan darken-3">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-md-12">
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3 bg-dark text-white">© 2020 Copyright:
+    <a class="text-white" href="https://mdbootstrap.com/"> FoodDude.com</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+  <!--Footer end-->
+  
+
+
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper.js -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js" integrity="sha384-BOsAfwzjNJHrJ8cZidOg56tcQWfp6y72vEJ8xQ9w6Quywb24iOsW913URv1IS4GD" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper.js and Bootstrap JS
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.min.js" integrity="sha384-5h4UG+6GOuV9qXh6HqOLwZMY4mnLPraeTrjT5v07o347pj6IkfuoASuGBhfDsp3d" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>

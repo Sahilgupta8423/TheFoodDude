@@ -1,0 +1,24 @@
+{% extends 'Tfd/basic.html' %}
+{% block body %}
+<div class="container">
+    <h2 class="mt-3">Items In Cart</h2>
+    <div class="row">
+        {{cart_items}}
+    </div>
+</div>
+{% endblock %}
+{% block js %}
+<script>
+  if (localStorage.getItem('cart') == null) {
+    var cart = {};
+  }
+  else {
+    var sum = 0;
+    cart = JSON.parse(localStorage.getItem('cart'));
+    for (var item in cart) {
+      sum = sum + cart[item]
+    }
+    document.getElementById('cart').innerHTML = sum;
+  }
+</script>
+{% endblock %}

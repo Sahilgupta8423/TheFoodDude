@@ -1,0 +1,52 @@
+{% extends 'Tfd/basic.html' %}
+
+{% block body %}
+{% load static %}
+<div class="container">
+  <div class="row">
+    {% for i in res %}
+    <!-- <div class="col-sm-6  col-md-4">
+        <div class="card  mt-4 " style="width: 18rem;">
+            <img src='/media/{{i.res_image}}' class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{i.res_title}}</h5>
+              <p class="card-text">{{i.res_spec}}</p>
+              <a href="#" class="btn btn-primary"></a>
+            </div>
+            </div>
+        </div> -->
+
+    <div class="col col-sm-3">
+      <div class="card mt-3">
+        <img src='/media/{{i.res_image}}' class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{i.res_title}}</h5>
+          <p class="card-text">{{i.res_spec}}</p>
+          <a href="/restaurant/{{i.res_id}}" class="btn btn-success align-items-center">Quick View</a>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
+{% block js %}
+<script>
+  if (localStorage.getItem('cart') == null) {
+    var cart = {};
+  }
+  else {
+    var sum = 0;
+    cart = JSON.parse(localStorage.getItem('cart'));
+    for (var item in cart) {
+      sum = sum + cart[item]
+    }
+    document.getElementById('cart').innerHTML = sum;
+  }
+</script>
+{% endblock %}
