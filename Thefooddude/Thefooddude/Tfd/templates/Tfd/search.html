@@ -1,0 +1,73 @@
+{% extends 'Tfd/basic.html' %}
+{% block body %}
+<h2>This is search page</h2>
+{{allProd}}
+{{allProd}}
+<div class="container">
+    <div class="row mt-3">
+        {% for i in allProd %}
+        <div class="offset-md-1 col-md-2">
+            <img src="/media/{{i.image}}" class="mb-3 img-fluid img-thumbnail" style="width: 130px; height: 130px" alt="">
+        </div>
+        <div class="col-md-3">
+            <h3 id="namefood{{i.food_id}}">{{i.name}}</h3>
+            <b>Rs-<span id="pricefood{{i.food_id}}">{{i.price}}</span></b>
+            <p>{{res.res_spec}}</p>
+        </div>
+        <div class="col-md-4">
+            <button   id="food{{i.food_id}}" class="btn btn-success mt-4 cart">Add To Cart</button>
+            <a type="button" href="/restaurant/{{i.restaurant_id}}" class="btn btn-dark align-items-center mt-4 ml-3">View Menu</a>
+        </div>
+        <!-- <div class="col-md-2 mt-4">
+            <a href="/restaurant/{{i.restaurant_id}}" class="btn btn-dark align-items-center">View Menu</a>
+        </div> -->
+       
+        <div class="col-md-1"></div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
+
+{% block js %}
+<script>
+  if (localStorage.getItem('cart') == null) {
+    var cart = {};
+  }
+  else {
+    var sum = 0;
+    cart = JSON.parse(localStorage.getItem('cart'));
+    for (var item in cart) {
+      sum = sum + cart[item][0]
+    }
+    document.getElementById('cart').innerHTML = sum;
+  }
+
+  $('.cart').click(function(){
+    console.log('clicked');
+    var idstr = this.id.toString();
+    console.log(idstr);
+    if (cart[idstr] !=undefined){
+      console.log("exits")
+    qty = cart[idstr][0] + 1;
+    cart[idstr][0]=qty
+    console.log(qty)
+    }
+    else
+    {
+    console.log("not exits")
+    qty = 1;
+    name = document.getElementById('name'+idstr).innerHTML;
+    price = document.getElementById('price'+idstr).innerHTML;
+    cart[idstr] = [qty, name, parseInt(price)];
+    }
+    console.log(cart);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    var sum  = 0
+      for (var item in cart) {
+        sum = sum + cart[item][0]
+      }
+    document.getElementById('cart').innerHTML = sum;
+    });
+</script>
+{% endblock %}

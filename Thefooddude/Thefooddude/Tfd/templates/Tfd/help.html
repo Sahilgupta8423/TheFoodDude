@@ -1,41 +1,48 @@
 {% extends 'Tfd/basic.html' %}
 {% block body %}
+{% load static %}
 <div class="container">
-    <form class="row g-3 mt-4">
+    <form class="row g-3 mt-4" method="post" action="/restaurant/help/">{% csrf_token %}
         <div class="col-md-6">
-            <label for="inputEmail4" class="form-label">Name</label>
-            <input type="text" class="form-control" id="name" name="name">
+            <label for="inputEmail4"  class="form-label">Name</label>
+            <input type="text" required class="form-control" id="name" name="name">
           </div>
         <div class="col-md-6">
           <label for="inputEmail4" class="form-label">Email</label>
-          <input type="email" class="form-control" name="email" id="inputEmail4">
-        </div>
-        
-        <div class="col-12">
-          <label for="inputAddress" class="form-label">Address</label>
-          <input type="text" class="form-control" id="inputAddress" name="address" placeholder="1234 Main St">
+          <input type="email" required class="form-control" name="email" id="email">
         </div>
         
         <div class="col-md-6">
           <label for="inputCity" class="form-label">Contact No.</label>
-          <input type="text" class="form-control" name="contact" id="contact">
+          <input type="text" required class="form-control" name="phone" id="phone">
         </div>
         
         <div class="col-md-6">
           <label for="inputZip" class="form-label">City</label>
-          <input type="text" class="form-control" id="city" name="city">
+          <input type="text" required class="form-control" id="city" name="city">
         </div>
+
         <div class="col-12">
-          <div class="form-check">
-            <input class="form-check-input mt-3" type="checkbox" id="gridCheck">
-            <label class="form-check-label mt-2" for="gridCheck">
-              Check me out
-            </label>
-          </div>
+          <label for="inputAddress" aria-required="true" class="form-label">Address</label>
+          <input type="text" class="form-control" id="address" name="address" placeholder="1234 Main St">
+        </div>
+
+        <div class="col-md-12">
+          <label for="helptextArea" class="form-label">How may we help you</label>
+          <textarea class="form-control" id="textArea" name="textArea" cols="30" rows="7"></textarea>
         </div>
         <div class="col-12 mt-3">
           <button type="submit" class="btn btn-primary">Submit</button>
         </div>
       </form>
 </div>
+<img src="{% static 'Tfd/LOGO.PNG' %}" style="height: 60px; width: 60px" alt="">
 {% endblock  %}
+{% block js %}
+<script>
+  {% if Thank %}
+  alert("Thank You for contacting us, we will reach to you as soon as possible !!!")
+  document.location = "/restaurant";
+  {% endif %}
+</script>
+{% endblock %}

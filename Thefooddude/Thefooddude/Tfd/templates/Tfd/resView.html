@@ -12,31 +12,30 @@ font-size: 35px
 <div class="container-fluid bg-dark">
     <div class="row ">
         <div class="col-md-3 offset-md-1  mt-3 mb-3">
-            <img src="/media/{{res.res_image}}" class="ml-4" style="width: 250px; height: 170px" alt="">
+            <img src="/media/{{res.res_image}}" class="ml-4 img-fluid border border-white rounded" style="width: 250px; height: 170px" alt="">
         </div>
         <div class="col-md-3 ">
-            <p class="text-white fontS mb-2 mt-2">{{res.res_title}}</p>
+            <h3 class="text-white fontS  mt-3">{{res.res_title}}</h3>
             <p class="text-white mb-2">{{res.res_spec}}</p>
             <p class="text-white ">{{res.address}}</p>
         </div>
     </div>
 </div>
-
 <div class="container">
-
     <div class="row mt-3">
         {% for i in food %}
         <div class="offset-md-1 col-md-2">
-            <img src="/media/{{i.image}}" class="mb-3 img-fluid" style="width: 130px; height: 130px" alt="">
+            <img src="/media/{{i.image}}" class="mb-3 img-fluid img-thumbnail" style="width: 130px; height: 130px" alt="">
         </div>
         <div class="col-md-3">
-            <h3>{{i.name}}</h3>
-            <b>Rs-{{i.price}}</b>
+            <h3 id="namefood{{i.food_id}}">{{i.name}}</h3>
+            <b>Rs-<span id="pricefood{{i.food_id}}">{{i.price}}</span></b>
             <p>{{res.res_spec}}</p>
         </div>
-        <div class="col-md-1"></div>
+        <div class="col-md-1">
+        </div>
         <div class="col-md-2 ">
-            <button href=""  id="food" class="btn btn-success mt-4 cart">Add To Cart</button>
+            <button id="food{{i.food_id}}" class="btn btn-success mt-4 cart">Add To Cart</button>
         </div>
         <div class="col-md-2"></div>
         {% endfor %}
@@ -46,9 +45,49 @@ font-size: 35px
 {% endblock %}
 
 {% block js %}
+<script>
+  console.log('working')
+  if(localStorage.getItem('cart') == null)
+  {
+  var cart={};
+  }
+  else{
+    var sum = 0;
+  cart= JSON.parse(localStorage.getItem('cart'));
+  for (var item in cart) {
+    sum = sum + cart[item][0] 
+  }
+  document.getElementById('cart').innerHTML = sum;
+  }
+  //jQuery starts here//
+  $('.cart').click(function(){
+    console.log('clicked');
+    var idstr = this.id.toString();
+    console.log(idstr);
+    if (cart[idstr] !=undefined){
+      console.log("exits")
+    qty = cart[idstr][0] + 1;
+    cart[idstr][0]=qty
+    console.log(qty)
+    }
+    else
+    {
+      console.log("not exits")
+    qty = 1;
+    name = document.getElementById('name'+idstr).innerHTML;
+    price = document.getElementById('price'+idstr).innerHTML;
+    cart[idstr] = [qty, name, parseInt(price)];
+    }
+    console.log(cart);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    var sum  = 0
+      for (var item in cart) {
+        sum = sum + cart[item][0]
+      }
+    document.getElementById('cart').innerHTML = sum;
+    });
   
-  <script>
-    console.log('working');
+    /*console.log('working');
     if (localStorage.getItem('cart') == null) {
       var cart = {};
     }
@@ -78,7 +117,7 @@ font-size: 35px
       }
       document.getElementById('cart').innerHTML =sum;
       
-    });
+    });*/
 
   </script>
  

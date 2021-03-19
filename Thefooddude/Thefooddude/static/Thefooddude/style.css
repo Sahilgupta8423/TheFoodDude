@@ -1,0 +1,17 @@
+.logo{
+	height: 30px;
+	width: 30px;
+}
+.search{
+	background-image: url(https://cdn.pixabay.com/photo/2017/07/10/16/50/food-2490641_1280.jpg);
+	width: 100%;
+	margin: 0;
+	height: 600px;
+}
+a{
+	text-decoration: none;
+}
+a img {
+    width: 80px;
+    height: 80px;
+}

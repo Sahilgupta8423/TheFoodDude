@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
 
@@ -9,22 +10,19 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
     integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'all.min.css' %}">
 
   <title>{% block title%} {% endblock %}</title>
   <style>
-    {
-      % block css %
-    }
+    {% block css %}
 
-      {
-      % endblock %
-    }
+      {% endblock %}
   </style>
-</head> 
+</head>
 
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="/restaurant">The Food Dude</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,8 +31,8 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
-        <form class="form-inline mr-3 my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <form method="get" action="/restaurant/search/" class="form-inline mr-3 my-2 my-lg-0">{% csrf_token %}
+          <input class="form-control mr-sm-2" name="search" id="search" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
         <li class="nav-item mr-2 active">
@@ -46,14 +44,14 @@
         <li class="nav-item mr-2 dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
-            User
-          </a> 
+            {{user}}
+          </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Profile</a>
+            <a class="dropdown-item" href="/restaurant/profile">Profile</a>
             <a class="dropdown-item" href="#">Favorites</a>
             <div class="dropdown-divider bg-dark"></div>
-            <a class="dropdown-item" href="#">Logout</a>
-          </div> 
+            <a class="dropdown-item" href="/logout">Logout</a>
+          </div>
         </li>
         <li class="nav-item mr-5">
           <a class="nav-link " href="/restaurant/help" tabindex="-1">Help</a>
@@ -61,7 +59,38 @@
       </ul>
     </div>
   </nav>
+
+
+
   {% block body %} {% endblock %}
+  <footer class="footer ">
+    <div class="container-fluid bg-secondary">
+      <div class="row">
+        <div class="offset-2 col-2 mt-4">
+          <ul class="list-unstyled" >
+            <a href="">
+              <li class="text-warning" style='text-decoration:none;'>Home</li>
+            </a>
+            <a href="">
+              <li class="text-warning">Contact</li>
+            </a>
+            <a href="">
+              <li class="text-warning">Menu</li>
+            </a>
+
+          </ul>
+        </div>
+        <div class="col-4 text-white mt-4">
+          <h3>Address :</h3>
+          <span> 5th KM Stone, Delhi-Meerut Road</span>
+          <p class="">Rajnagar Extension</p>
+          <i class="fab fa-facebook"></i>
+        </div>
+      </div>
+      
+    </div>
+  </footer>
+  
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -75,9 +104,9 @@
     integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
     crossorigin="anonymous"></script>
   {% block js %}
-  
+
   <script>
-    function updateCart(cart){
+    function updateCart(cart) {
       document.getElementById('cart').innerHTML = Object.keys(cart).length;
     }
     console.log('working');
@@ -99,11 +128,11 @@
       }
       console.log(cart);
       localStorage.setItem('cart', JSON.stringify(cart));
-     updateCart(cart)
+      updateCart(cart)
     });
 
   </script>
- 
+
   {% endblock %}
 </body>
 

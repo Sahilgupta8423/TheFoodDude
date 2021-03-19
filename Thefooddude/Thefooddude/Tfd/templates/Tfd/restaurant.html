@@ -2,6 +2,7 @@
 
 {% block body %}
 {% load static %}
+{% csrf_token %}
 <div class="container">
   <div class="row">
     {% for i in res %}
@@ -37,7 +38,22 @@
 {% endblock %}
 {% block js %}
 <script>
+  console.log("working")
   if (localStorage.getItem('cart') == null) {
+    var cart = {};
+  }
+  else {
+    var sum = 0;
+    cart = JSON.parse(localStorage.getItem('cart'));
+    for (var item in cart) {
+      sum = sum + cart[item][0]
+    }
+    document.getElementById('cart').innerHTML = sum;
+  }
+
+
+
+  /*if (localStorage.getItem('cart') == null) {
     var cart = {};
   }
   else {
@@ -47,6 +63,6 @@
       sum = sum + cart[item]
     }
     document.getElementById('cart').innerHTML = sum;
-  }
+  }*/
 </script>
 {% endblock %}
