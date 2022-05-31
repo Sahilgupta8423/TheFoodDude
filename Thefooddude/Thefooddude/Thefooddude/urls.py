@@ -18,6 +18,8 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 from . import views
+form django.views.static import serve
+from django.conf.urls.static import url
 
 urlpatterns = [
     path('', views.index, name="Home"),
@@ -26,4 +28,6 @@ urlpatterns = [
     path("register/", views.register, name ="register"),
     path("login/", views.login, name ="login"),
     path("logout/", views.logout, name ="logout"),
+    url(r'^media/(?P<path>.*)$',serve,{'document_root': settings.MEDIA_ROOT})
+    url(r'^static/(?P<path>.*)$',serve,{'document_root': settings.STATIC_ROOT})
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
