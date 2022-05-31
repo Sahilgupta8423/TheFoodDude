@@ -8,3 +8,4 @@ Pillow==9.1.0
 pytz==2022.1
 sqlparse==0.4.2
 tzdata==2021.5
+whitenoise==5.2.0
